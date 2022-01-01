@@ -22,7 +22,10 @@ function inicializaCronometro() {
             if (tempoInicio < 1 || contador > 10) {
                 clearInterval(id);
                 finalizaJogo();
-                contador = 0;
+                if (contador > 10) {
+                    enviaMensagem();
+                    botaoReiniciar.click(recarregaPagina());
+                }
             }
             if (tempoInicio < 10) {
                 $(".tempo").addClass("avisoTempo");
@@ -65,4 +68,12 @@ function atualizaInformacao() {
     contador = 0;
     mostraFrase();
     reiniciaCampo();
+}
+
+function recarregaPagina() {
+    botaoReiniciar.click(function() {
+        if (true) {
+            document.location.reload();
+        }
+    })
 }
