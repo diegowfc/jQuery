@@ -10,12 +10,12 @@ function comparaResposta(data) {
     if (respostaUsuario == respostaPergunta) {
         contador++;
         contaAcertos(contador);
+        reiniciaCampo();
         if (contador <= 10) {
             frase.text(data[contador].texto);
             atualizaTempo(data[contador].tempo);
             reiniciaCampo();
         }
-        reiniciaCampo();
     }
 }
 
@@ -24,4 +24,8 @@ function mostraFrase() {
         frase.text(data[0].texto);
         atualizaTempo(data[0].tempo);
     });
+}
+
+function enviaMensagem() {
+    alert("PARABÉNS!!! VOCÊ COMPLETOU O QUIZ!!");
 }
