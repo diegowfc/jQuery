@@ -3,29 +3,34 @@ var tempoInicio = $("#tempo-digitacao").text();
 var botaoReiniciar = $(".botao-reiniciar");
 var frase = $(".frase");
 
-function InicializaJogo() {
+$(function() {
+    inicializaJogo();
+    inicializaCronometro();
+});
+
+function inicializaJogo() {
     mostraFrase();
     campo.on("input", confereResposta);
-    setTimeout(function() {
-        campo.focus(inicializaCronometro());
-    }, 1100);
 }
 
 function inicializaCronometro() {
-    var id = setInterval(function() {
-        tempoInicio--;
-        $("#tempo-digitacao").text(tempoInicio);
-        if (tempoInicio < 1 || contador > 10) {
-            clearInterval(id);
-            finalizaJogo();
-            contador = 0;
-        }
-        if (tempoInicio < 10) {
-            $(".tempo").addClass("avisoTempo");
-        }
-    }, 1000);
-    $(".frase").removeAttr('hidden');
-    campo.removeAttr('placeholder');
+    atualizaTempo();
+    campo.one("focus", function() {
+        var id = setInterval(function() {
+            tempoInicio--;
+            $("#tempo-digitacao").text(tempoInicio);
+            if (tempoInicio < 1 || contador > 10) {
+                clearInterval(id);
+                finalizaJogo();
+                contador = 0;
+            }
+            if (tempoInicio < 10) {
+                $(".tempo").addClass("avisoTempo");
+            }
+        }, 1000);
+        $(".frase").removeAttr('hidden');
+        campo.removeAttr('placeholder');
+    })
 }
 
 function finalizaJogo() {
@@ -44,6 +49,7 @@ function reiniciaCampo() {
 }
 
 function reiniciaJogo() {
+    inicializaCronometro();
     botaoReiniciar.click(atualizaInformacao());
     campo.focus();
     $(".placar").fadeOut(1000);
