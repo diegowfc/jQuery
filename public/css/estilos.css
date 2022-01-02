@@ -46,6 +46,10 @@ textarea {
     margin-top: 40px;
 }
 
+.campo-digitacao-acerto:focus {
+    outline: 2px solid rgb(3, 255, 3);
+}
+
 .botao-reiniciar {
     display: none;
     margin-left: auto;
@@ -55,13 +59,6 @@ textarea {
 
 .botao-reiniciar-ativo {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
-
-.botao-reiniciar {
-    display: none;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
