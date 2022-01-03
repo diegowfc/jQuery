@@ -13,8 +13,8 @@ function novoPlacar(jogador, acertos) {
 
 function inserePlacar() {
     var corpoTabela = $(".placar").find("tbody");
-    var jogador = "Diego";
     var acertos = $("#acertos").text();
+    var jogador = $("#nome-jogador").val();
 
     var linha = novoPlacar(jogador, acertos);
 
@@ -26,6 +26,7 @@ function salvaPlacar() {
     var placar = [];
     var linhas = $("tbody>tr");
 
+
     linhas.each(function() {
         var jogador = $(this).find("td:nth-child(1)").text();
         var score = $(this).find("td:nth-child(2)").text();
@@ -34,20 +35,30 @@ function salvaPlacar() {
             jogador: jogador,
             pontos: score
         };
-
-        placar.push(lista);
+        if (jogador != "") {
+            placar.push(lista);
+        }
     });
 
     var dados = {
         placar: placar
     }
-    $.post("http://localhost:3000/placar", dados, function() {
-        console.log("salvou no servidor");
-    })
+    $.post("http://localhost:3000/placar", dados)
+}
+
+function ordenaLista(a, b) {
+    if (a.pontos > b.pontos) {
+        return -1;
+    }
+    if (a.pontos < b.pontos) {
+        return 1;
+    }
+    return 0;
 }
 
 function atualizaPlacar() {
     $.get("http://localhost:3000/placar", function(data) {
+        data.sort(ordenaLista);
         $(data).each(function() {
             var linha = novoPlacar(this.jogador, this.pontos);
             $("tbody").append(linha);
