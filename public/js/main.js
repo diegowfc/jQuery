@@ -7,6 +7,8 @@ $(function() {
     inicializaJogo();
     inicializaCronometro();
     atualizaPlacar();
+    exibeJogo();
+    desistirJogo();
 });
 
 function inicializaJogo() {
@@ -17,10 +19,11 @@ function inicializaJogo() {
 function inicializaCronometro() {
     atualizaTempo();
     campo.one("focus", function() {
+        $("#botao-desistir").attr("hidden", false);
         var id = setInterval(function() {
             tempoInicio--;
             $("#tempo-digitacao").text(tempoInicio);
-            if (tempoInicio < 1 || contador > 10) {
+            if (tempoInicio < 1 || contador > 10 || desistirJogo() == true) {
                 clearInterval(id);
                 finalizaJogo();
                 if (contador > 10) {
@@ -31,6 +34,7 @@ function inicializaCronometro() {
             if (tempoInicio < 10) {
                 $(".tempo").addClass("avisoTempo");
             }
+
         }, 1000);
         $(".frase").removeAttr('hidden');
         campo.removeAttr('placeholder');
@@ -58,6 +62,13 @@ function reiniciaJogo() {
     botaoReiniciar.click(atualizaInformacao());
     campo.focus();
     $(".placar").fadeOut(1000);
+}
+
+function desistirJogo() {
+    var desistir = $("#botao-desistir")
+    desistir.click(function() {
+        tempoInicio = 1;
+    })
 }
 
 function atualizaTempo(tempo) {
