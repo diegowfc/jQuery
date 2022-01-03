@@ -15,27 +15,39 @@
             <h1 class="display-6">Quiz</h1>
         </div>
 
-        <h2>Que time sou eu?</h2>
-        <p class="frase h6 text-info" hidden></p>
-        <div class="lista">
-            <ul class="tempo">
-                <li>
-                    <i class="bi-alarm icones" style="font-size: 1rem; color: cornflowerblue;"></i>
-                    <span id="tempo-digitacao"></i></span> segundos
-                </li>
-            </ul>
-            <ul>
-                <li><span id="acertos">
-                    <i class="bi bi-check2-all icones" style="font-size: 1rem; color: cornflowerblue;">
-                    </i>0</span> acertos</li>
-            </ul>
+        <div class="body-cadastro">
+            <h3>Informe seu nome!</h3><br>
+            <textarea id="nome-jogador" cols="30" rows="1" placeholder="Nome"></textarea><br>
+            <button class="btn btn-primary botao-iniciar">Jogar</button>
         </div>
 
-        <textarea class=" form-control campo-digitacao" placeholder="CLIQUE AQUI PARA INICIAR!" cols="50" rows="2"></textarea>
+        <div class="body-jogo" hidden>
+            <h2>Que time sou eu?</h2>
+            <p class="frase h6 text-info" hidden></p>
+            <div class="lista">
+                <ul class="tempo">
+                    <li>
+                        <i class="bi-alarm icones" style="font-size: 1rem; color: cornflowerblue;"></i>
+                        <span id="tempo-digitacao"></i></span> segundos
+                    </li>
+                </ul>
+                <ul>
+                    <li><span id="acertos">
+                    <i class="bi bi-check2-all icones" style="font-size: 1rem; color: cornflowerblue;">
+                    </i>0</span> acertos</li>
+                </ul>
+            </div>
+
+            <textarea class="form-control campo-digitacao" placeholder="CLIQUE AQUI PARA INICIAR!" cols="50" rows="2"></textarea>
+        </div>
         <a role="button" aria-pressed="true" id="botao-placar" title="Placar">
             <i class="bi bi-file-bar-graph" style="font-size: 2rem; color: cornflowerblue;"></i>
         </a>
-        <button class="botao-reiniciar" onclick="reiniciaJogo()">Jogar novamente</button>
+        <a role="button" aria-pressed="true" id="botao-desistir" title="Desistir" hidden>
+            <i class="bi bi-file-excel" style="font-size: 2rem; color: rgb(245, 3, 3);"></i>
+        </a>
+
+        <button type="button" class="btn btn-info botao-reiniciar" onclick="reiniciaJogo()">Jogar novamente</button>
 
         <section class="placar ">
             <h3>Placar de líderes:</h3>
@@ -61,5 +73,6 @@
 <script src="js/placar.js "></script>
 <script src="js/resposta.js "></script>
 <script src="js/acertos.js "></script>
+<script src="js/cadastro.js "></script>
 
 </html>
