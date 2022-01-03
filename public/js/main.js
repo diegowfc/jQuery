@@ -6,6 +6,7 @@ var frase = $(".frase");
 $(function() {
     inicializaJogo();
     inicializaCronometro();
+    atualizaPlacar();
 });
 
 function inicializaJogo() {
@@ -41,6 +42,7 @@ function finalizaJogo() {
     botaoReiniciar.addClass("botao-reiniciar-ativo");
     botaoReiniciar.removeClass("botao-reiniciar");
     inserePlacar();
+    salvaPlacar();
 }
 
 function reiniciaCampo() {
