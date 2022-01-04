@@ -47,13 +47,7 @@ function salvaPlacar() {
 }
 
 function ordenaLista(a, b) {
-    if (a.pontos > b.pontos) {
-        return -1;
-    }
-    if (a.pontos < b.pontos) {
-        return 1;
-    }
-    return 0;
+    return b.pontos - a.pontos;
 }
 
 function atualizaPlacar() {
