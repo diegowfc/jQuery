@@ -1,5 +1,2 @@
-node_modules/
-body-parser/
-consign/
-express/
-nedb/
+/node_modules
+
